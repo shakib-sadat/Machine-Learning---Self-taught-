@@ -10,7 +10,7 @@ library(randomForest)
 set.seed(1234)
 regressor = randomForest(x = dataset[1],
                          y = dataset$Salary,
-                         ntree = 100)
+                         ntree = 500)
 
 #Predicting a new result with Decision Tree Regression
 y_pred = predict(regressor, data.frame(Level = 6.5))
