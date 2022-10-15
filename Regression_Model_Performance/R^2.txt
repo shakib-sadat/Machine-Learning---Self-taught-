@@ -1,0 +1,4 @@
+Ideal Scenario: Ideally if SS res is 0 then the trend line of the model goes through all the records. In that case R-squared is 1.
+The closer R-squared to 1 is better. The lower it's the worse. 
+R-squared can be negative, if SS res fits the data worse then. 
+Normally, the value of R-square is 0-1. Basically, R-squared tells us how well the model fitted to the data compared to the average line.
