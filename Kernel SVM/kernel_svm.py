@@ -16,7 +16,7 @@ import pandas as pd
 
 # Importing the Dataset
 dataset = pd.read_csv(
-    r'D:/VS Code/Workspace/Machine-Learning--Self-taught-/SVM/Social_Network_Ads.csv')
+    r'D:/VS Code/Workspace/Machine-Learning--Self-taught-/Kernel SVM/Social_Network_Ads.csv')
 x = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, -1].values
 
@@ -30,8 +30,8 @@ standard_scaler = StandardScaler()
 x_train = standard_scaler.fit_transform(x_train)
 x_test = standard_scaler.transform(x_test)
 
-# Training SVM on Training set
-classifier = SVC(kernel='linear', random_state=0)
+# Training Kernel SVM on Training set
+classifier = SVC(kernel='rbf', random_state=0)
 classifier.fit(x_train, y_train)
 
 # Predict a new result
@@ -39,7 +39,6 @@ print(classifier.predict(standard_scaler.transform([[30, 87000]])))
 
 # Predict the test result
 y_pred = classifier.predict(x_test)
-# print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), 1))
 
 # Confusion Matrix
 confusionmatrix = confusion_matrix(y_test, y_pred)

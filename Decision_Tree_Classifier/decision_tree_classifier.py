@@ -1,4 +1,6 @@
 # Importing the libraries
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from matplotlib.colors import ListedColormap
 from sklearn.metrics import confusion_matrix, accuracy_score
@@ -16,7 +18,7 @@ import pandas as pd
 
 # Importing the Dataset
 dataset = pd.read_csv(
-    r'D:/VS Code/Workspace/Machine-Learning--Self-taught-/SVM/Social_Network_Ads.csv')
+    r'D:/VS Code/Workspace/Machine-Learning--Self-taught-/Decision_Tree_Classifier/Social_Network_Ads.csv')
 x = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, -1].values
 
@@ -29,9 +31,8 @@ x_train, x_test, y_train, y_test = train_test_split(
 standard_scaler = StandardScaler()
 x_train = standard_scaler.fit_transform(x_train)
 x_test = standard_scaler.transform(x_test)
-
-# Training SVM on Training set
-classifier = SVC(kernel='linear', random_state=0)
+# Training DecisionTreeClassifier on Training set
+classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
 classifier.fit(x_train, y_train)
 
 # Predict a new result
@@ -39,7 +40,6 @@ print(classifier.predict(standard_scaler.transform([[30, 87000]])))
 
 # Predict the test result
 y_pred = classifier.predict(x_test)
-# print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), 1))
 
 # Confusion Matrix
 confusionmatrix = confusion_matrix(y_test, y_pred)
@@ -58,7 +58,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c=ListedColormap(('red', 'green'))(i), label=j)
-plt.title('SVM (Training set)')
+plt.title('Decision Tree (Training set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
@@ -75,7 +75,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c=ListedColormap(('red', 'green'))(i), label=j)
-plt.title('SVM (Test set)')
+plt.title('Decision Tree (Test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
